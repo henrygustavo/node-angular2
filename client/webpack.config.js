@@ -2,6 +2,7 @@ var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path = require("path");
+var _root = path.resolve(__dirname);
 
 module.exports = {
     entry: {
@@ -13,7 +14,7 @@ module.exports = {
         extensions: [".ts", ".js",".css", ".html"]
     },
     output: {
-        path: path.resolve(__dirname, "dist"),
+        path: root("dist"),
         filename: '[name].js'
     },
     module: {
@@ -42,6 +43,16 @@ module.exports = {
                     }
                 ]
             },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: ["css-loader"]
+                })
+            },
+            {   test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, 
+                use: 'file-loader?limit=10000&name=assets/fonts/[name].[ext]' 
+            }
         ]
     },
     devServer: {
@@ -53,7 +64,7 @@ module.exports = {
     plugins: [
         new webpack.ContextReplacementPlugin(
             /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-            "./src",
+            root("./src"),
         {}),
         new webpack.optimize.CommonsChunkPlugin({
             name: ["app","vendor", "polyfills"]
@@ -61,10 +72,17 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
         }),
-        new ExtractTextPlugin({
-            filename: 'app.css',
-            disable: false,
-            allChunks: true
+        new ExtractTextPlugin("assets/css/[name].css"),
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            $: 'jquery',
+            jquery: 'jquery'
         })
     ]
 };
+
+function root(args) {
+    args = Array.prototype.slice.call(arguments, 0);
+
+    return path.join.apply(path, [_root].concat(args));
+}

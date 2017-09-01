@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ApiService } from  './shared/api.service';
 
 @NgModule({
     imports: [
@@ -13,6 +13,9 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     declarations: [
         AppComponent,
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [
+        ApiService
+    ]
 })
 export class AppModule { }

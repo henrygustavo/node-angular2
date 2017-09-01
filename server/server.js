@@ -2,21 +2,19 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
+//CORS
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 //------Register our ROUTERS
 
 var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
 
 //----------------
-
-//CORS
-
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-Width, content-type,Authorization');
-  next();
-});
 
 app.get('/',function(req,res){
   res.sendFile(path.join(__dirname)+ '/index.html');
