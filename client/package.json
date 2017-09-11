@@ -7,7 +7,8 @@
     "prod": "npm run clean && webpack -p",
     "postinstall": "typings install",
     "clean": "rimraf ./dist/*",
-    "test": "karma start"
+    "test": "karma start",
+    "test-debug": "karma start --browsers=Chrome --single-run=false --auto-watch"
   },
   "author": "henry",
   "license": "MIT",
