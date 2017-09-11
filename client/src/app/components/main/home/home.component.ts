@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../../shared/api.service";
-import {Item} from "../../model/Item";
+import {ApiService} from "../../../shared/api.service";
+import {Item} from "../../../model/Item";
 
 @Component({
     selector: 'home-component',
