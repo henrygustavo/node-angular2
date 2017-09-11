@@ -4,7 +4,7 @@
   "description": "angular 2 ui",
   "scripts": {
     "dev": "webpack-dev-server",
-    "prod": "npm run clean && webpack -p",
+    "prod": "npm run clean && webpack",
     "postinstall": "typings install",
     "clean": "rimraf ./dist/*",
     "test": "karma start",
@@ -51,6 +51,7 @@
     "style-loader": "^0.18.2",
     "typescript": "2.3.4",
     "typings": "^2.1.1",
+    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",

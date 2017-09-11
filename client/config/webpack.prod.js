@@ -23,6 +23,7 @@ module.exports = webpackMerge(commonConfig,
         },
         plugins: [
             new webpack.NoEmitOnErrorsPlugin(),
+           
             new ExtractTextPlugin("assets/css/[name].[hash].css"),
             new webpack.DefinePlugin({
                 'process.env': {
@@ -33,6 +34,15 @@ module.exports = webpackMerge(commonConfig,
                 htmlLoader: {
                     minimize: true
                 }
-            })
+            }),
+            new webpack.optimize.UglifyJsPlugin({
+                sourcemap: true,
+                beautify: false,
+                comments: false,
+                compress: {
+                  warnings: false,
+                  drop_console: true
+                }
+             }),
         ]
     });

@@ -6,8 +6,8 @@ var helpers = require('./helpers');
 module.exports = {
     entry: {
         'app': "./src/app/main.ts",
-        'polyfills': "./libs/polyfills.ts",
-        'vendor': "./libs/vendor.ts"
+        'polyfills': "./src/polyfills.ts",
+        'vendor': "./src/vendor.ts"
     },
     resolve: {
         extensions: [".ts", ".js", ".css", ".html"]
