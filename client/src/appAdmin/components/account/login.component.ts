@@ -10,7 +10,8 @@ export class LoginComponent implements OnInit {
     private loginForm: FormGroup;
     private displayMessage: { [key: string]: string } = {};
     private validationMessages: { [key: string]: { [key: string]: string } };
-    
+    private isRedirected = true;
+
      constructor(private fb: FormBuilder) {
 
         console.log("LoginComponent -> constructor");

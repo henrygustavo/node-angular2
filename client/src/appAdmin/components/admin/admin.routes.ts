@@ -5,7 +5,7 @@ import { DashBoardComponent } from './dashboard/dashboard.component';
 
 export const AdminRoutes: Route[] = [
   { path: 'dashboard', component: DashBoardComponent },
-  { path: 'user', component: UserComponent },
+  { path: 'users', component: UserComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 
