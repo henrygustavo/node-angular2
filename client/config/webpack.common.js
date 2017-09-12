@@ -6,6 +6,7 @@ var helpers = require('./helpers');
 module.exports = {
     entry: {
         'app': "./src/app/main.ts",
+        'appAdmin': "./src/appAdmin/main-admin.ts",
         'polyfills': "./src/polyfills.ts",
         'vendor': "./src/vendor.ts"
     },
@@ -50,11 +51,25 @@ module.exports = {
         stats: "errors-only"
     },
     plugins: [
-        new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/, 
-        helpers.root("./src"), {}),
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+            helpers.root("./src"),
+            {}),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ["app", "vendor", "polyfills"]
+            name: ["vendor", "polyfills"]
         }),
-        new HtmlWebpackPlugin({template: './src/index.html'}),
+        new HtmlWebpackPlugin({
+            title: "index",
+            excludeChunks: ["appAdmin"],
+            template: "src/index.html",
+            chunksSortMode: helpers.orderChunk(['polyfills','vendor','bootstrap', 'app'])
+        }),
+        new HtmlWebpackPlugin({
+            title: "admin",
+            excludeChunks: ["app"],
+            filename: "admin.html",
+            template: "src/admin.html",
+            chunksSortMode: helpers.orderChunk(['polyfills','vendor','bootstrap', 'appAdmin'])
+        }),
         new webpack.ProvidePlugin({jQuery: 'jquery', $: 'jquery', jquery: 'jquery'})]
 };

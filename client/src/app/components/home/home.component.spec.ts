@@ -1,8 +1,8 @@
 import {TestBed} from '@angular/core/testing';
 import {HomeComponent} from './home.component';
-import {ApiService} from "../../../shared/api.service";
+import {ApiService} from "../../shared/services/api.service";
 import {Observable} from 'rxjs/Rx';
-import {Item} from "../../../model/Item";
+import {Item} from "../../models/Item";
 
 class MockBlogService extends ApiService {
   constructor() {

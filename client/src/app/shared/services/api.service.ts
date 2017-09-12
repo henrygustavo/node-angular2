@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { Item } from "../model/Item";
+import { Item } from "../../models/Item";
 
 @Injectable()
 export class ApiService {

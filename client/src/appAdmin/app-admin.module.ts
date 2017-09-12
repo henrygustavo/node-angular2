@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { AppAdminComponent } from './app-admin.component';
 import { ApiService } from  './shared/services/api.service';
 
-import appRoutes from './app.routes';
+import appRoutes from './app-admin.routes';
 
 @NgModule({
     imports: [
@@ -14,12 +13,11 @@ import appRoutes from './app.routes';
         appRoutes
     ],
     declarations: [
-        AppComponent,
-        HomeComponent
+        AppAdminComponent,
     ],
-    bootstrap: [AppComponent],
+    bootstrap: [AppAdminComponent],
     providers: [
         ApiService
     ]
 })
-export class AppModule { }
+export class AppAdminModule { }
