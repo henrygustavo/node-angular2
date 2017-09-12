@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppAdminComponent } from './app-admin.component';
 import { ApiService } from  './shared/services/api.service';
 
@@ -13,7 +13,7 @@ import appRoutes from './app-admin.routes';
         appRoutes
     ],
     declarations: [
-        AppAdminComponent,
+        AppAdminComponent
     ],
     bootstrap: [AppAdminComponent],
     providers: [

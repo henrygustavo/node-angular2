@@ -13,14 +13,6 @@ module.exports = webpackMerge(commonConfig,
             path: helpers.root("dist"),
             filename: 'assets/js/[name].[hash].js'
         },
-        module: {
-            rules: [
-                {
-                    test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                    use: 'file-loader?limit=10000&name=assets/fonts/[name].[hash].[ext]'
-                }
-            ]
-        },
         plugins: [
             new webpack.NoEmitOnErrorsPlugin(),
            

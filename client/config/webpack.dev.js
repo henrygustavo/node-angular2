@@ -11,14 +11,6 @@ module.exports = webpackMerge(commonConfig,
             path: helpers.root("dist"),
             filename: 'assets/js/[name].js'
         },
-        module: {
-            rules: [
-                {
-                    test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                    use: 'file-loader?limit=10000&name=assets/fonts/[name].[ext]'
-                }
-            ]
-        },
         plugins: [
             new ExtractTextPlugin("assets/css/[name].css")
         ],

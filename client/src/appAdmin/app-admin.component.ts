@@ -1,5 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import "./assets/css/app-admin.css";
+import "./assets/css/theme.css";
+import "./assets/css/metisMenu.css";
+import "font-awesome/css/font-awesome.css";
 
 @Component({
         selector: "app-admin", 

@@ -18,7 +18,7 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                use: ["awesome-typescript-loader", "angular2-template-loader","angular-router-loader"]
+                use: ["awesome-typescript-loader", "angular2-template-loader", "angular-router-loader"]
             }, {
                 test: /\.html$/,
 
@@ -41,35 +41,53 @@ module.exports = {
             }, {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({fallback: "style-loader", use: ["css-loader"]})
+            }, {
+                test: /\.(jpg|jpeg|png|gif|svg)(\?.*)?$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[hash].[ext]",
+                            publicPath: "/",
+                            outputPath: "assets/image/"
+                        }
+                    }
+                ]
+            }, {
+                test: /\.(eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
+                use: [
+                    {
+                        loader: "file-loader",
+                        options: {
+                            name: "[name].[hash].[ext]",
+                            publicPath: "/",
+                            outputPath: "assets/fonts/"
+                        }
+                    }
+                ]
             }
         ]
     },
-    devServer: {
-        compress: true,
-        port: 1000,
-        open: true,
-        stats: "errors-only"
-    },
     plugins: [
-        new webpack.ContextReplacementPlugin(
-            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-            helpers.root("./src"),
-            {}),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ["vendor", "polyfills"]
-        }),
+        new webpack.ContextReplacementPlugin(/angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/, helpers.root("./src"), {}),
+        new webpack
+            .optimize
+            .CommonsChunkPlugin({
+                name: ["vendor", "polyfills"]
+            }),
         new HtmlWebpackPlugin({
             title: "index",
             excludeChunks: ["appAdmin"],
             template: "src/index.html",
-            chunksSortMode: helpers.orderChunk(['polyfills','vendor','bootstrap', 'app'])
+            chunksSortMode: helpers.orderChunk(['polyfills', 'vendor', 'bootstrap', 'app'])
         }),
         new HtmlWebpackPlugin({
             title: "admin",
             excludeChunks: ["app"],
             filename: "admin.html",
             template: "src/admin.html",
-            chunksSortMode: helpers.orderChunk(['polyfills','vendor','bootstrap', 'appAdmin'])
+            chunksSortMode: helpers.orderChunk(['polyfills', 'vendor', 'bootstrap', 'appAdmin'])
         }),
-        new webpack.ProvidePlugin({jQuery: 'jquery', $: 'jquery', jquery: 'jquery'})]
+        new webpack.ProvidePlugin({jQuery: 'jquery', $: 'jquery', jquery: 'jquery'})
+    ]
 };
